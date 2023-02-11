@@ -276,6 +276,7 @@ sudo bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/instal
 ```
 Waiting for installation. unfortunately, this script is in Chinese and all English versions are outdated. so bear with me.
 after you saw `complete` enter y 
+
 ![Alt text](img/8.jpg)
 
 then enter your username for the x-ui login
