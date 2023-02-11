@@ -32,7 +32,7 @@ what you need for this setup is really simple
 #### 1. for CDN configuration you need to create an account in any free CDN website like Cloudflare AWS or any other CDN you like ( for Iranian [ArvanCloud](https://www.arvancloud.ir/en/products/cdn) or [Derak](https://derak.cloud/) also works very well and is recommended.)
 for this tutorial, we will use Cloudflare.
 
-* create an account in Cloudflare. this step is really simple.
+* Create an account in Cloudflare. this step is really simple.
 go to your dashboard.
 
 ![dashboard](img/1.jpg)
@@ -78,7 +78,7 @@ you can use any DnsLookup tools like [mxtoolbox.com](https://mxtoolbox.com/DNSLo
 ![Alt text](img/7.jpg)
 
 ## <a name="Nginx"></a>:lock: Install Nginx
-we need a webserver for our website and SSL certificate.
+we need a webserver for our website and an SSL certificate.
 
 **CentOS** :
 
@@ -135,7 +135,7 @@ Inside, add the following sample HTML or anything you like:
 ```
 Save and close the file by pressing Ctrl+X to exit, then when prompted to save, Y and then Enter.
 
-I perfer to use a real website template and modify it to look like a real website. but it is your choice.
+I prefer to use a real website template and modify it to look like a real website. but it is your choice.
 
 In order for Nginx to serve this content, it’s necessary to create a server block with the correct directives. Instead of modifying the default configuration file directly, let’s make a new one at /etc/nginx/sites-available/your_domain:
 
@@ -190,14 +190,14 @@ sudo systemctl restart nginx
 ```
 
 ## <a name="Certificate"></a>:lock: Get SSL Certificate
-you need a valid ssl certificate for your website. make sure your firewall allows communication on ports 80 and 443.
+you need a valid SSL certificate for your website. make sure your firewall allows communication on ports 80 and 443.
 
 
 we will use certbot and Let's Encrypt for our free SSL certificate.
 
 The first step to using Let’s Encrypt to obtain an SSL certificate is to install the Certbot software on your server.
 
-Install Certbot and it’s Nginx plugin with apt:
+Install Certbot and its Nginx plugin with apt:
 
 ```console
 sudo apt install certbot python3-certbot-nginx
@@ -210,7 +210,7 @@ sudo certbot --nginx -d your_domain -d www.your_domain
 ```
 This runs certbot with the --nginx plugin, using -d to specify the domain names we’d like the certificate to be valid for.
 
-if certbot asked you following question select number 2.
+if certbot asked you the following question select number 2.
 
 ```console
 Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
@@ -224,7 +224,7 @@ Select the appropriate number [1-2] then [enter] (press 'c' to cancel):
 
 ```
 
-if certbot has been abale to get your certificate you should see the following message
+if certbot has been able to get your certificate you should see the following message
 
 ```console
 IMPORTANT NOTES:
@@ -242,7 +242,7 @@ IMPORTANT NOTES:
    Donating to EFF:                    https://eff.org/donate-le
 ```
 
-your certificates are in following directories you need them. so keep them safe and remeber the path.
+your certificates are in the following directories you need them. so keep them safe and remember the path.
 
 ```console
 /etc/letsencrypt/live/your_domain/fullchain.pem
@@ -274,18 +274,18 @@ Download V2ray (x-UI panel) and install it.
 ``` console
 sudo bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 ```
-Waiting for installation. unfortunately, this script is in Chinese and all English versions are outdated. so bare with me.
+Waiting for installation. unfortunately, this script is in Chinese and all English versions are outdated. so bear with me.
 after you saw `complete` enter y 
 ![Alt text](img/8.jpg)
 
-then eneter you username for x-ui login
+then enter your username for the x-ui login
 ![Alt text](img/9.jpg)
 
-and then you password for X-ui panel (dont use this password set any strong password at least 12 character including symbuls numbers capital letters :D )
+and then your password for X-ui panel (don't use this password set any strong password of at least 12 characters including symbols numbers capital letters :D )
 
 ![Alt text](img/10.jpg)
 
-now you need to set your panle port. default port is 54321. you can keep that and press enter.
+now you need to set your panel port. the default port is 54321. you can keep that and press enter.
 ![Alt text](img/11.jpg)
 
 you should see a menu like this:
@@ -293,15 +293,15 @@ you should see a menu like this:
 
 that means your X-ui installation is complete. you can check your x-ui service with `sudo x-ui status` command and start it with `sudo x-ui start`.
 
-Now go to http://yourdomain.xyz:54321 you should see x-ui login panle.
+Now go to http://yourdomain.xyz:54321 you should see the x-ui login panel.
 
 ![Alt text](img/13.jpg)
 
-login with your user name and password that you have set during installation. you should see a dashboard like this.
+log in with your username and password that you have set during installation. you should see a dashboard like this.
 
 ![Alt text](img/14.jpg)
 
-use google chrome or microsoft edge to translate it to english. before continue 
+use google chrome or Microsoft edge to translate it into english. before continue 
 
 ## <a name="nginx-V2ray"></a>:bulb: Config Nginx for your V2ray
 you made it. this is the golden part
