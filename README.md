@@ -14,6 +14,7 @@
 * [Setup V2ray Server](#V2ray)
 * [Nginx With Fake Website](#Website)
 * [Config Nginx for your V2ray](#nginx-V2ray)
+* [config client](#client)
 * [Enable BBR](#BBR)
 
 </details>
@@ -304,8 +305,82 @@ log in with your username and password that you have set during installation. yo
 
 use google chrome or Microsoft edge to translate it into english.
 
+in inbound menu click on + icon
+
+![Alt text](img/15.jpg)
+
+* select Vmess
+* set extra ID to 64
+* set transmition on `ws`
+* set path to a random string at least 8 character
+* leave everything else as default.
+
+![Alt text](img/16.jpg)
+
+<a name="GUID">just make sure to save the ID somewhere.</a>
+
+and that's done.
+
 ## <a name="nginx-V2ray"></a>:bulb: Config Nginx for your V2ray
-you made it. this is the golden part
+you made it. this is the golden part.
+
+we will change the nginx config to redirect our calls to the ws path to Vmess this way so every normal request will load our website unless we call the magic ws path.
+
+open your nginx config file.
+
+```console
+sudo vim /etc/nginx/nginx.conf
+```
+add a location like this in your nginx file.
+
+```console
+
+        location /djfgGw84$ {
+                proxy_redirect off;
+                proxy_pass http://0.0.0.0:32426;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+
+        }
+```
+in the above file replace `djfgGw84` with your eandom path from vmess-ws part. and in http://0.0.0.0:32426 replace 32426 with your vmess port.
+
+reload your nginx service.
+
+```console
+ sudo systemctl restart nginx
+```
+and you are done. congratulations.
+
+## <a name="client"></a>:computer: Config client
+for windos client you can use [v2rayN](https://github.com/2dust/v2rayN) 
+
+this is the link for their latest release
+
+`https://github.com/2dust/v2rayN/releases/download/6.10/v2rayN-With-Core.zip`
+
+when you have download it add a vmess server and fill the info like the image
+
+![Alt text](img/18.jpg)
+
+* replace `your_domain` with your actual domain
+* replace UUID with the ID in the this [section](#GUID)
+
+* **your port should be 443**
+* Alter ID : 64
+* Transport: Ws
+* Path: to your Random ws path
+* set tls
+
+and your Client is done.
+
+you can use same config on your Android or IOS 
+
+for android you can use [ShadowRocket](https://play.google.com/store/apps/details?id=com.v2cross.shadowrocket&hl=en&gl=US) and for IOS you can use [Shadowlink](https://apps.apple.com/us/app/shadowlink-shadowsocks-vpn/id1439686518) 
 
 ## <a name="BBR"></a>:bulb: Enable BBR
 This part is optional but it has a big impact on your speed especially if you have too many users.
+
+you can use this [link](https://www.techrepublic.com/article/how-to-enable-tcp-bbr-to-improve-network-speed-on-linux/) for BBR configuration.
