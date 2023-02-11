@@ -302,7 +302,7 @@ log in with your username and password that you have set during installation. yo
 
 ![Alt text](img/14.jpg)
 
-use google chrome or Microsoft edge to translate it into english. before continue 
+use google chrome or Microsoft edge to translate it into english.
 
 ## <a name="nginx-V2ray"></a>:bulb: Config Nginx for your V2ray
 you made it. this is the golden part
