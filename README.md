@@ -209,7 +209,6 @@ http {
 
 **MAKE SURE ALL `your_domain` HAS BEEN CHANGED WITH YOUR ACTUAL DOMAIN. server_name is your domain section**
 
-Find the `server_names_hash_bucket_size` directive and remove the # symbol to uncomment the line.
 
 Save and close the file when you are finished.
 Next, test to make sure that there are no syntax errors in any of your Nginx files:
