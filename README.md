@@ -31,7 +31,7 @@ what you need for this setup is really simple
 
 ------
 
-## <a name="CDN"></a>:rocket: Config CDN
+## <a name="cdn"></a>:rocket: Config CDN
 #### 1. for CDN configuration you need to create an account in any free CDN website like Cloudflare AWS or any other CDN you like ( for Iranian [ArvanCloud](https://www.arvancloud.ir/en/products/cdn) or [Derak](https://derak.cloud/) also works very well and is recommended.)
 for this tutorial, we will use Cloudflare.
 
@@ -72,7 +72,7 @@ After Updating your DNS settings go to your SSL/TLS Menu and Select overview.
 
 That's it. we are done with Cloudflare. :)
 
-## <a name="Domain"></a>:satellite: Config your Domain
+## <a name="domain"></a>:satellite: Config your Domain
 this is a simple step and it depends on how you got your domain.
 you should update your domain's Name server in your domain panel with your CDN Name servers. Make sure they get updated and working fine. then continue to the next steps.
 
@@ -80,7 +80,7 @@ you can use any DnsLookup tools like [mxtoolbox.com](https://mxtoolbox.com/DNSLo
 
 ![Alt text](img/7.jpg)
 
-## <a name="Nginx"></a>:lock: Install Nginx
+## <a name="nginx"></a>:lock: Install Nginx
 we need a webserver for our website and an SSL certificate.
 
 **CentOS** :
@@ -104,7 +104,7 @@ sudo apt-get install nginx
 ```
 you should be done. now we need a website.
 
-## <a name="Website"></a>:ghost: Nginx With Fake Website 
+## <a name="website"></a>:ghost: Nginx With Fake Website 
 This is where things get tricky but don't worry it is quite easy.
 
 **NOTE:replace ALL `your_domain` with your actual domain.**
@@ -225,7 +225,7 @@ If there aren’t any problems, restart Nginx to enable your changes:
 sudo systemctl restart nginx
 ```
 
-## <a name="Certificate"></a>:lock: Get SSL Certificate
+## <a name="certificate"></a>:lock: Get SSL Certificate
 you need a valid SSL certificate for your website. make sure your firewall allows communication on ports 80 and 443.
 
 
@@ -288,7 +288,7 @@ your certificates are in the following directories you need them. so keep them s
 
 we are almost there. 
 
-## <a name="V2ray"></a>:mahjong: Setup V2Ray 
+## <a name="v2ray"></a>:mahjong: Setup V2Ray 
 Now it is getting exciting.
 connect to your VPS via SSH. 
 Get your server up to date:
@@ -356,7 +356,7 @@ in inbound menu click on + icon
 
 and that's done.
 
-## <a name="nginx-V2ray"></a>:bulb: Config Nginx for your V2ray
+## <a name="nginx-v2ray"></a>:bulb: Config Nginx for your V2ray
 you made it. this is the golden part.
 
 we will change the nginx config to redirect our calls to the ws path to Vmess this way so every normal request will load our website unless we call the magic ws path.
@@ -415,7 +415,7 @@ you can use same config on your Android or IOS
 
 for android you can use [ShadowRocket](https://play.google.com/store/apps/details?id=com.v2cross.shadowrocket&hl=en&gl=US) and for IOS you can use [Shadowlink](https://apps.apple.com/us/app/shadowlink-shadowsocks-vpn/id1439686518) 
 
-## <a name="BBR"></a>:bulb: Enable BBR
+## <a name="bbr"></a>:bulb: Enable BBR
 This part is optional but it has a big impact on your speed especially if you have too many users.
 
 you can use this [link](https://www.techrepublic.com/article/how-to-enable-tcp-bbr-to-improve-network-speed-on-linux/) for BBR configuration.
