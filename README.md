@@ -6,13 +6,13 @@
 <summary></strong>Click to expand contents</strong></summary>
 
 
-* [Ingredients](#Ingredients)
+* [Ingredients](#ingredients)
 * [Config CDN](#CDN)
 * [Config your Domain](#Domain)
 * [Install Nginx](#nginx)
+* [Nginx With Fake Website](#Website)
 * [Get SSL Certificate](#Certificate)
 * [Setup V2ray Server](#V2ray)
-* [Nginx With Fake Website](#Website)
 * [Config Nginx for your V2ray](#nginx-V2ray)
 * [config client](#client)
 * [Enable BBR](#BBR)
@@ -21,7 +21,9 @@
 
 ------
 
-## <a name="Ingredients"></a>:computer: Ingredients
+## <a name="ingredients"></a>:computer: Ingredients
+
+
 what you need for this setup is really simple 
 
 * Up and running Linux VPS outside your country 
