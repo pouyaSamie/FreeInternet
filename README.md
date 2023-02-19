@@ -138,43 +138,77 @@ Save and close the file by pressing Ctrl+X to exit, then when prompted to save, 
 
 I prefer to use a real website template and modify it to look like a real website. but it is your choice.
 
-In order for Nginx to serve this content, it’s necessary to create a server block with the correct directives. Instead of modifying the default configuration file directly, let’s make a new one at /etc/nginx/sites-available/your_domain:
+In order for Nginx to serve this content, it’s necessary to create a server block with the correct directives.
 
 
 ```console
-sudo nano /etc/nginx/sites-available/your_domain
+sudo vim /etc/nginx/nginx.conf
 ```
 
-Paste in the following configuration block, which is similar to the default, but updated for our new directory and domain name:
+change your config like the code below but updated for our new directory and domain name:
 
 ```console
-server {
-        listen 80;
-        listen [::]:80;
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
 
-        root /var/www/your_domain/html;
-        index index.html index.htm index.nginx-debian.html;
+include /usr/share/nginx/modules/*.conf;
 
-        server_name your_domain www.your_domain;
+events {
+    worker_connections 1024;
+}
 
-        location / {
-                try_files $uri $uri/ =404;
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 4096;
+
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+
+    include /etc/nginx/conf.d/*.conf;
+
+    server {
+        server_name  sample.com www.sample.com;
+        root         /var/www/html; #/usr/share/nginx/html;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        error_page 404 /404.html;
+        location = /404.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+        }
+
+        location /Replace_with_YOUR_RANDOM_STRING {
+                proxy_redirect off;
+                proxy_pass http://0.0.0.0:11111; # REPLACE WITH YOUR VMESS/VLESS port
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+
+
+
         }
 }
+
 ```
 
-**MAKE SURE ALL `your_domain` HAS BEEN CHANGED WITH YOUR ACTUAL DOMAIN**
+**MAKE SURE ALL `your_domain` HAS BEEN CHANGED WITH YOUR ACTUAL DOMAIN. server_name is your domain section**
 
-Next, let’s enable the file by creating a link from it to the sites-enabled directory, which Nginx reads from during startup:
-
-```console
-sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
-```
-To avoid a possible hash bucket memory problem that can arise from adding additional server names, it is necessary to adjust a single value in the `/etc/nginx/nginx.conf`  file. Open the file:
-
-```console
-sudo nano /etc/nginx/nginx.conf
-```
 Find the `server_names_hash_bucket_size` directive and remove the # symbol to uncomment the line.
 
 Save and close the file when you are finished.
