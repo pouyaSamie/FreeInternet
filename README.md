@@ -310,7 +310,7 @@ Download V2ray (x-UI panel) and install it.
 ``` console
 wget https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh
 chmod +x install.sh
-./install.sh
+sudo ./install.sh
 ```
 Waiting for installation. unfortunately, this script is in Chinese and all English versions are outdated. so bear with me.
 after you saw `complete` enter y 
